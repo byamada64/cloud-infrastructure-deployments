@@ -1,4 +1,4 @@
-# ☁️ Azure App Services Deployment
+# ☁️ Azure App Service Deployment
 
 Provisioned a managed Azure Web App using App Service to validate PaaS hosting, runtime detection, deployment workflows, networking defaults, cost awareness, and operational cleanup.
 
@@ -50,8 +50,6 @@ Provisioned a managed Azure Web App using App Service to validate PaaS hosting, 
 
 - None assigned during build
 
----
-
 ## 💻 Commands Used
 
 - `chmod 400 az-lab-vm_key.pem` — Secure private key permissions  
@@ -76,8 +74,6 @@ Provisioned a managed Azure Web App using App Service to validate PaaS hosting, 
 - Restart / Stop / Delete controls visible  
 - Deployment Center available
 
----
-
 ## 🧠 Lessons Learned
 
 - Azure App Service removes need to manage OS patching and server maintenance  
@@ -86,8 +82,6 @@ Provisioned a managed Azure Web App using App Service to validate PaaS hosting, 
 - Networking and monitoring can be layered on after deployment  
 - Managed platforms still require cost governance  
 - Review screen is valuable for catching incorrect SKU choices before launch  
-
----
 
 ## 🔮 Future Improvements
 
@@ -98,8 +92,6 @@ Provisioned a managed Azure Web App using App Service to validate PaaS hosting, 
 - Integrate VNet for private backend access  
 - Scale plan testing under load  
 - Test lower-cost Basic / Free tiers for labs  
-
----
 
 ## 🧹 Final Hygiene Cleanup
 
