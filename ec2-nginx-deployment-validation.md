@@ -1,4 +1,4 @@
-# EC2 + NGINX Deployment + Validation
+# EC2 Instance Provisioning + NGINX Deployment + Validation
 
 ## 🎯 Objective
 
