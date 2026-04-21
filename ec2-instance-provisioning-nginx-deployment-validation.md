@@ -2,7 +2,7 @@
 
 ## 🎯 Objective
 
-Provisioned a repeatable Ubuntu EC2 lab in minutes to validate Linux web hosting, security controls, instance health, lifecycle cleanup, and cloud cost governance.
+Provisioned a repeatable EC2 instance in minutes from a chosen AMI to validate hosting, security controls, instance health, lifecycle cleanup, and cloud cost governance.
 
 ## 🏗️ Environment Build Choices
 
