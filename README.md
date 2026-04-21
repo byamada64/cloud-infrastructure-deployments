@@ -1,13 +1,11 @@
 # ☁️ Cloud Infrastructure Labs
 
-Cloud infrastructure labs focused on AWS, Azure, Linux, networking, monitoring, and automation—built to showcase real-world troubleshooting, repeatable deployments, operational excellence, and cloud cost governance.
+Hands-on cloud labs focused on AWS, Azure, Linux, networking, monitoring, automation, validation, and operational cleanup.
 
-## Platforms
+## AWS
 
-### AWS
+- [EC2 Instance + NGINX Deployment + Validation](aws/ec2-instance-nginx-deployment-validation.md)
 
-- EC2 + NGINX Deployment
+## Azure
 
-### Azure
-
-- Azure VM + NGINX Deployment
+- [Azure VM + NGINX Deployment + Validation](azure/azure-vm-nginx-deployment-validation.md)
