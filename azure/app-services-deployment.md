@@ -2,7 +2,7 @@
 
 Provisioned a managed Azure Web App using App Service to validate PaaS hosting, runtime detection, deployment workflows, networking defaults, cost awareness, and operational cleanup.
 
----
+--
 
 ## 🏗️ Environment Build Choices
 
