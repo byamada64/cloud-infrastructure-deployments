@@ -63,7 +63,9 @@ Provisioned and validated an Azure Key Vault to demonstrate secure credential st
 - Monitoring options available  
 - ARM template export available  
 - Soft delete enabled  
-- Resource accessible from portal  
+- Resource accessible from portal
+- Secret created: vm-admin-password (mock-up)
+- Secret created: sql-prod-admin-password (mock-up)
 
 ## 🧠 Lessons Learned
 
