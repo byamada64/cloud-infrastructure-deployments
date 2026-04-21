@@ -104,3 +104,12 @@ Deploy an Ubuntu EC2 instance, install NGINX, validate external web access, and 
 * HTTPS with Let’s Encrypt
 * Load Balancer front-end
 * Private subnet + Bastion host model
+
+## 🧹 Final Hygiene Cleanup
+
+* Terminated EC2 instance after testing completed
+* Deleted attached EBS volume to prevent storage charges
+* Removed temporary SSH key pair (`aws-lab-pem`)
+* Deleted custom Security Group (`aws-lab-web-sg`)
+* Verified no remaining billable lab resources in region
+* Practiced responsible cloud cost governance
