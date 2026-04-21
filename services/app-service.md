@@ -2,8 +2,6 @@
 
 Practical guide for understanding Azure App Service, why companies use it, and when to choose it over traditional virtual machines.
 
----
-
 ## 1️⃣ What it is
 
 Azure App Service is a fully managed Platform as a Service (PaaS) offering used to host:
@@ -24,8 +22,6 @@ Supported runtimes include:
 - PHP
 - Containers
 
----
-
 ## 2️⃣ Why companies use it
 
 Organizations choose Azure App Service because it provides:
@@ -42,8 +38,6 @@ Organizations choose Azure App Service because it provides:
 
 It allows developers to focus on code instead of infrastructure.
 
----
-
 ## 3️⃣ What problem it solves
 
 Traditional VM hosting requires engineers to manage:
@@ -58,8 +52,6 @@ Traditional VM hosting requires engineers to manage:
 - High availability design
 
 Azure App Service removes much of that burden through a managed hosting model.
-
----
 
 ## 4️⃣ Day-to-day engineer relevance
 
@@ -76,8 +68,6 @@ Cloud / infrastructure engineers commonly use App Service to:
 - Manage environment variables
 - Integrate authentication
 - Control network access
-
----
 
 ## 5️⃣ When to choose it over a VM
 
@@ -99,8 +89,6 @@ Choose a VM when:
 - Kernel-level tuning required
 - Specialized networking needed
 
----
-
 ## 6️⃣ Real-world use cases
 
 - Internal company portals
@@ -113,14 +101,10 @@ Choose a VM when:
 - Lightweight Node.js apps
 - Secure authenticated business apps
 
----
-
 ## 7️⃣ Related builds
 
 - [Azure App Service Deployment](../../azure/app-service-deployment.md)
 - [Azure VM Deployment](../../azure/vm-deployment.md)
-
----
 
 ## 📌 Key Engineer Takeaway
 
