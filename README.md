@@ -35,6 +35,7 @@ Designed for engineers, recruiters, and hiring managers who want real-world exam
 - [Azure VM + NGINX Deployment + Validation](azure/vm-deployment.md)
 - [Azure App Service Deployment](azure/app-service-deployment.md)
 - [Azure Key Vault Deployment](azure/key-vault-deployment.md)
+- [Azure Kubernetes Service (AKS) Deployment](azure/aks-deployment.md)
 
 
 ### Service Guides
@@ -44,6 +45,7 @@ Designed for engineers, recruiters, and hiring managers who want real-world exam
 - [AWS Elastic Beanstalk](services/elastic-beanstalk.md)
 - [Azure Key Vault](services/key-vault.md)
 - [AWS Secrets Manager](services/secrets-manager.md)
+- [Azure Kubernetes Service (AKS)](services/aks-service.md)
 
 
 ## Skills Demonstrated
@@ -57,7 +59,8 @@ Designed for engineers, recruiters, and hiring managers who want real-world exam
 - Operational Cleanup  
 - Documentation & Runbooks  
 - Troubleshooting
-
+- Kubernetes / Container Orchestration
+- Load Balancing / Scaling
 
 ## Current Focus
 
