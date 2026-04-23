@@ -20,7 +20,6 @@ It is commonly used for:
 
 AKS combines Kubernetes power with Azure-native integrations.
 
----
 
 2️⃣ Why companies use it
 
@@ -40,7 +39,6 @@ Organizations choose AKS because it provides:
 
 AKS helps companies modernize applications while reducing infrastructure overhead.
 
----
 
 3️⃣ What problem it solves
 
@@ -58,8 +56,6 @@ Without AKS, companies often struggle with:
 
 AKS centralizes these capabilities into a managed enterprise platform.
 
----
-
 4️⃣ Day-to-day engineer relevance
 
 Engineers commonly use AKS for:
@@ -76,8 +72,6 @@ Engineers commonly use AKS for:
 - Monitoring node health and cluster performance
 
 AKS is highly relevant for cloud engineers, DevOps, SRE, platform engineers, and infrastructure teams.
-
----
 
 5️⃣ When to choose it over a VM
 
@@ -102,7 +96,6 @@ Choose a VM when:
 
 A VM hosts servers. AKS hosts modern platforms.
 
----
 
 6️⃣ Real-world use cases
 
@@ -117,7 +110,6 @@ A VM hosts servers. AKS hosts modern platforms.
 - SaaS multi-service platforms
 - Global scalable web workloads
 
----
 
 7️⃣ Related builds
 
