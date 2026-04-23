@@ -2,6 +2,10 @@
 
 Hands-on cloud engineering notes covering AWS, Azure, networking, monitoring, automation, validation, security, and operational cleanup.
 
+## Lab Scope Note
+
+- These builds were intentionally scoped for sandbox and testing purposes. Many of the same core concepts and deployment patterns can be applied in production environments, with final designs tailored to business requirements, security standards, scalability needs, and organizational governance.
+
 ## About This Repo
 
 This repository contains two types of practical cloud engineering content:
