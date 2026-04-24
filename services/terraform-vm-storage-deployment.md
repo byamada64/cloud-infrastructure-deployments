@@ -1,4 +1,4 @@
-# Terraform VM + Storage Deployment
+# 🏗️ Terraform VM + Storage Deployment
 
 Practical guide for understanding Terraform-based VM and storage deployments, why companies use Infrastructure as Code, and when to choose it over manual cloud provisioning.
 
