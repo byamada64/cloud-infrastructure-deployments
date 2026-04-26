@@ -12,6 +12,10 @@
 
 ## 📄 YAML File Used
 
+### deploy.yml
+
+~~~yaml
+---
 - name: Install and Deploy Web Server
   hosts: webservers
   become: yes
@@ -35,7 +39,7 @@
         content: |
           <h1>Ansible Deployment Success</h1>
           <p>Server: {{ inventory_hostname }}</p>
-  
+~~~
 
 ## 💻 Commands Used
 
