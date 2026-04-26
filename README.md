@@ -21,51 +21,54 @@ Designed for engineers, recruiters, and hiring managers who want real-world exam
 
 ## 🗂️ Repository Layout
 
-- [`aws/`](./aws/) → AWS deployment builds
-- [`azure/`](./azure/) → Azure deployment builds
-- [`ci-cd/`](./ci-cd/) → Jenkins, Ansible, and CI/CD automation guides
-- [`services/`](./services/) → Cloud service explainers and decision guides
+- [`aws/`](./aws/) → AWS builds organized by compute, network, security, containers, and app platforms
+- [`azure/`](./azure/) → Azure builds organized by compute, network, security, containers, and app platforms
+- [`ci-cd/`](./ci-cd/) → Automation content including Jenkins, Ansible, and Terraform
+- [`services/`](./services/) → Service explainers organized by AWS, Azure, and CI/CD tooling
 
 
 ## ☁️ AWS Builds
 
-- [EC2 Instance + NGINX Deployment + Validation](./aws/ec2-deployment.md)
-- [Elastic Beanstalk Deployment](./aws/elastic-beanstalk-deployment.md)
-- [Secrets Manager Deployment](./aws/secrets-manager.md)
+- [EC2 Instance + NGINX Deployment + Validation](./aws/compute/ec2-deployment.md)
+- [Elastic Beanstalk Deployment](./aws/app-platform/elastic-beanstalk-deployment.md)
+- [Secrets Manager Deployment](./aws/security/secrets-manager.md)
 
 
 ## 🔷 Azure Builds
 
-- [Azure VM + NGINX Deployment + Validation](./azure/vm-deployment.md)
-- [Azure App Service Deployment](./azure/app-service-deployment.md)
-- [Azure Key Vault Deployment](./azure/key-vault-deployment.md)
-- [Azure Kubernetes Service (AKS) Deployment](./azure/aks-deployment.md)
-- [Terraform VM + Storage Deployment](./azure/terraform-vm-storage-deployment.md)
-- [Azure VM + Storage + Private Endpoint Deployment](./azure/vm-storage-private-endpoint.md)
-
+- [Azure VM + NGINX Deployment + Validation](./azure/compute/vm-deployment.md)
+- [Azure App Service Deployment](./azure/app-platform/app-service-deployment.md)
+- [Azure Key Vault Deployment](./azure/security/key-vault-deployment.md)
+- [Azure Kubernetes Service (AKS) Deployment](./azure/containers/aks-deployment.md)
+- [Azure VM + Storage + Private Endpoint Deployment](./azure/network/vm-storage-private-endpoint.md)
+  
 
 ## 🔁 CI/CD Builds
 
-- [Jenkins Freestyle and Multibranch Guide](./ci-cd/jenkins-freestyle-and-multibranch-guide.md)
-- [Ansible NGINX Deployment](./ci-cd/ansible-nginx-deployment.md)
-- [Ansible Linux Baseline Configuration](./ci-cd/ansible-linux-baseline.md)
-- [Ansible Linux Health Audit](./ci-cd/ansible-health-audit.md)
-- [Ansible Daily Linux Operations Check](./ci-cd/ansible-daily-ops.md)
+- [Jenkins Freestyle and Multibranch Guide](./ci-cd/Jenkins/jenkins-freestyle-and-multibranch-guide.md)
+- [Ansible NGINX Deployment](./ci-cd/ansible/ansible-nginx-deployment.md)
+- [Ansible Linux Baseline Configuration](./ci-cd/ansible/ansible-linux-baseline.md)
+- [Ansible Linux Health Audit](./ci-cd/ansible/ansible-health-audit.md)
+- [Ansible Daily Linux Operations Check](./ci-cd/ansible/ansible-daily-ops.md)
+- [Terraform VM + Storage Deployment](./ci-cd/terraform/terraform-vm-storage-deployment.md)
 
 
 ## 🧩 Service Guides
 
-- [Jenkins](./services/jenkins-freestyle-and-multibranch-guide.md)
-- [Azure App Service](./services/app-service.md)
-- [AWS Elastic Beanstalk](./services/elastic-beanstalk.md)
-- [Azure Key Vault](./services/key-vault.md)
-- [AWS Secrets Manager](./services/secrets-manager.md)
-- [Azure Kubernetes Service (AKS)](./services/azure-aks-service.md)
-- [Terraform VM + Storage Deployment](./services/terraform-vm-storage-deployment.md)
-- [Ansible NGINX Deployment](./services/ansible-nginx-deployment.md)
-- [Ansible Linux Baseline Configuration](./services/ansible-linux-baseline.md)
-- [Ansible Linux Health Audit](./services/ansible-health-audit.md)
-- [Ansible Daily Linux Operations Check](./services/ansible-daily-ops.md)
+### AWS
+- [Elastic Beanstalk](./services/aws/elastic-beanstalk.md)
+- [Secrets Manager](./services/aws/secrets-manager.md)
+
+### Azure
+- [Azure App Service](./services/azure/app-service.md)
+- [Azure Key Vault](./services/azure/key-vault.md)
+- [Azure Kubernetes Service (AKS)](./services/azure/azure-aks-service.md)
+- [Azure VM + Storage + Private Endpoint](./services/azure/azure-vm-storage-container-private-endpoint.md)
+
+### CI/CD
+- [Jenkins](./services/ci-cd/jenkins-freestyle-and-multibranch-guide.md)
+- [Terraform VM + Storage Deployment](./services/ci-cd/terraform-vm-storage-deployment.md)
+- [Ansible NGINX Deployment](./services/ci-cd/ansible-nginx-deployment.md)
 
 
 ## 🛠️ Skills Demonstrated
