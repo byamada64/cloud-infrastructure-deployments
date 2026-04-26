@@ -4,7 +4,9 @@ Hands-on cloud infrastructure builds, automation workflows, architecture referen
 
 ## 📌 Lab Scope Note
 
-These builds were intentionally scoped for sandbox and testing purposes. Many of the same core concepts and deployment patterns can be applied in production environments, with final designs tailored to business requirements, security standards, scalability needs, and organizational governance.
+These guides prioritize build concepts and deployment flow over screenshots, since cloud interfaces evolve frequently while core engineering principles and deployment patterns remain consistent.
+
+Structured headings are intentionally used to serve as a follow-along framework, helping readers navigate each phase of a build while adapting steps to their own environment.
 
 
 ## 📖 About This Repo
