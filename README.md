@@ -1,4 +1,4 @@
-# ☁️ Cloud Infrastructure Builds | AWS, Azure & CI/CD
+# ☁️ Cloud Infrastructure Deployments | AWS, Azure & Automation
 
 Hands-on cloud infrastructure builds, automation workflows, architecture references, and deployment guides across AWS, Azure, and CI/CD platforms.
 
