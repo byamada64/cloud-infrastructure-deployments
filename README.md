@@ -1,7 +1,6 @@
 # ☁️ Cloud Infrastructure Deployments | AWS, Azure & Automation
 
-Hands-on cloud engineering notes covering AWS, Azure, networking, monitoring, automation, validation, security, and operational cleanup.
-
+Hands-on cloud infrastructure builds, automation workflows, architecture references, and deployment guides across AWS, Azure, and CI/CD platforms.
 
 ## 📌 Lab Scope Note
 
