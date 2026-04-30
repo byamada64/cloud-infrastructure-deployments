@@ -1,7 +1,10 @@
 # 🔐 AWS Secrets Manager
 
-Practical guide for understanding AWS Secrets Manager, why companies use it, and when to choose it for secure credential and secret management.
+## Service Summary
 
+AWS Secrets Manager is a managed security service that enables centralized storage, encryption, and lifecycle management of sensitive credentials such as API keys, database passwords, and tokens.
+
+It is commonly used when organizations want to eliminate hardcoded secrets and enforce secure access patterns, trading manual credential handling for automated rotation, fine-grained IAM control, and integration with cloud-native services.
 
 ## 1️⃣ What it is
 
