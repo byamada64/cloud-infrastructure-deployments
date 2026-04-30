@@ -6,6 +6,8 @@ Provisioned a managed Azure Web App using App Service to evaluate PaaS hosting, 
 
 This build validates platform service tradeoffs versus VM-based deployments, with focus on scalability, cost control, and integration boundaries within a governed lab environment.
 
+Keywords: RBAC, Managed Identity, Access Restrictions, App Service Plan (SKU), Application Settings, Monitoring, Application Insights
+
 
 ## 🏗️ Environment Build Choices
 
