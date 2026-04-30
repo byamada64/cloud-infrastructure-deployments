@@ -1,9 +1,10 @@
 # ☁️ Azure VM + Storage + Container + Private Endpoint Lab
 
-## 🎯 Objective
+## Build Summary
 
-Provisioned a repeatable multi-service Azure environment to validate compute deployment, secure storage access, private networking, governance tagging, container workloads, remote administration, and lifecycle cleanup awareness.
+Provisioned a multi-service Azure environment integrating Virtual Machine, Storage Account, Container Instance, and Private Endpoint to evaluate secure service communication and private network access in a production-aligned scenario.
 
+This build focuses on network isolation tradeoffs versus public exposure, incorporating Virtual Network (VNet), Subnet segmentation, Private Endpoint (PEP), Network Security Groups (NSG), and DNS resolution behavior to validate secure connectivity, access control, and service interaction within a governed lab environment.
 
 ## 🏗️ Environment Build Choices
 
