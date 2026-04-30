@@ -1,6 +1,10 @@
 # ☁️ AWS Elastic Beanstalk
 
-Practical guide for understanding AWS Elastic Beanstalk, why companies use it, and when to choose it over manually managing EC2-based application hosting.
+## Service Summary
+
+AWS Elastic Beanstalk is a managed application platform that simplifies deploying and operating web applications without manually provisioning underlying infrastructure.
+
+It is commonly used when teams want faster deployment and reduced operational overhead compared to EC2-based hosting, trading off low-level control for platform-managed scalability, health monitoring, and lifecycle management.
 
 
 ## 1️⃣ What It Is
