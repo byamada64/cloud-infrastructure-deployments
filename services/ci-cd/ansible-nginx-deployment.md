@@ -1,5 +1,11 @@
 # ⚙️ Ansible
 
+## Service Summary
+
+Ansible is an open-source automation platform used for configuration management, application deployment, and infrastructure orchestration across Linux environments.
+
+It is commonly used when organizations need repeatable system provisioning and operational automation, trading manual server management for YAML-driven playbooks, centralized control, and consistent execution across environments.
+
 ## 1️⃣ What it is
 
 Ansible is an open-source automation tool used for configuration management, application deployment, system administration, and infrastructure orchestration.
