@@ -77,7 +77,7 @@ Designed for engineers, recruiters, and hiring managers evaluating real-world cl
 
 ## 🛠️ Skills Demonstrated
 
-**Cloud Platforms**
+**Cloud Platforms**  
 AWS, Azure  
 
 **Infrastructure & Networking**  
