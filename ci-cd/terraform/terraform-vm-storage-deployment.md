@@ -1,9 +1,10 @@
 # Terraform Azure VM + Storage + Networking + Validation
 
-## 🎯 Objective
+## Build Summary
 
-Provisioned repeatable Azure infrastructure using Terraform to validate Infrastructure as Code workflows, cloud resource deployment, networking, storage, lifecycle cleanup, and troubleshooting of real-world provisioning behavior.
+Created a Terraform VM and storage deployment workflow to evaluate repeatable infrastructure provisioning, configuration consistency, and cloud resource lifecycle control in a production-aligned scenario.
 
+This build focuses on Infrastructure as Code tradeoffs versus manual portal deployment, incorporating Terraform configuration files, provider setup, resource definitions, state awareness, VM provisioning, storage deployment, and validation within a governed lab environment.
 ## 🏗️ Environment Build Choices
 
 ### 🏷️ Naming Convention
