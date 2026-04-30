@@ -1,8 +1,10 @@
 # ☁️ Azure VM Provisioning + NGINX Deployment + Validation
 
-## 🎯 Objective
+## Build Summary
 
-Provisioned a repeatable Azure virtual machine in minutes to validate hosting, security controls, VM health, lifecycle cleanup, and cloud cost governance.
+Provisioned an Azure Virtual Machine to evaluate infrastructure-based hosting, OS-level control, and network accessibility in a production-aligned scenario.
+
+This build focuses on VM-based deployment tradeoffs versus platform services, incorporating Virtual Network (VNet), Network Security Groups (NSG), Public IP configuration, SSH access, and compute sizing (SKU) to validate connectivity, security boundaries, and operational control within a governed lab environment.
 
 ## 🏗️ Environment Build Choices
 
