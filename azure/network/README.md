@@ -1,6 +1,6 @@
 # Azure Network Builds
 
-Azure networking labs covering VNet design, subnet segmentation, NSGs, routing, private connectivity, and hybrid access patterns aligned to production architecture and security controls.
+Azure networking implementations covering VNet design, subnet segmentation, NSGs, routing, private connectivity, and hybrid access patterns aligned to production architecture and security controls.
 
 ## Purpose
 
