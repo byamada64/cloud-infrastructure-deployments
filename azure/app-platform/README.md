@@ -4,8 +4,10 @@ PaaS services including App Service and platform workloads.
 
 ## Purpose
 
-Design and validate a segmented Azure network architecture using VNets, subnets, NSGs, and VPN Gateway to evaluate traffic isolation, access control, and hybrid connectivity patterns.
+- **Design:** Designed to simulate a production-aligned architecture, emphasizing service selection, scalability, and operational impact.
 
-This build tests subnet segmentation, inbound security rules, and gateway deployment while identifying production considerations such as routing design, firewall integration, and private connectivity models.
+- **Security:** Reviewed baseline security posture and identified gaps between default configurations and production requirements.
 
-This lab was executed in a governed environment with limitations on advanced routing, security appliances, and enterprise networking features.
+- **Validation:** Confirmed deployment integrity, service availability, and end-to-end connectivity.
+
+- **Limitations:** Performed within a restricted lab environment with limited access to enterprise networking, security, and automation capabilities.
