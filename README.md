@@ -77,23 +77,23 @@ Designed for engineers, recruiters, and hiring managers evaluating real-world cl
 
 ## 🛠️ Skills Demonstrated
 
-**Cloud Platforms**
-- AWS, Azure
+**Cloud Platforms**  
+AWS, Azure  
 
-**Infrastructure & Networking**
-- Compute provisioning, VMs, storage, private connectivity, network security
+**Infrastructure & Networking**  
+Compute provisioning, virtual machines, storage, private connectivity, network security  
 
-**Security & Access Control**
-- IAM, RBAC, Secrets Management, Key Vault, KMS
+**Security & Access Control**  
+IAM, RBAC, secrets management, Key Vault, KMS  
 
-**Automation & CI/CD**
-- Jenkins, Ansible, Terraform, Infrastructure as Code
+**Automation & CI/CD**  
+Jenkins, Ansible, Terraform, Infrastructure as Code  
 
-**Systems & Operations**
-- Linux administration, service validation, monitoring, health checks
+**Systems & Operations**  
+Linux administration, service validation, monitoring, health checks  
 
-**Engineering Practices**
-- Troubleshooting, runbooks, repeatable builds, operational validation
+**Engineering Practices**  
+Troubleshooting, runbooks, repeatable builds, operational validation  
 
 
 ## 🎯 Current Focus
