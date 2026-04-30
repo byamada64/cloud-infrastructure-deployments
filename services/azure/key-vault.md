@@ -4,7 +4,7 @@
 
 Azure Key Vault is a managed security service that provides centralized storage, encryption, and lifecycle management for secrets, keys, and certificates.
 
-Organizations use this when they need secure, private connectivity between services, trading public accessibility for stronger network isolation and governance-aligned access patterns.
+Organizations use this when they need centralized secret management and secure access patterns, trading manual credential handling for identity-based access control, auditability, and integration with cloud-native services.
 
 ## 1️⃣ What it is
 
