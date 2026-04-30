@@ -1,7 +1,10 @@
 # 🔐 AWS Secrets Manager Deployment
 
-Provisioned and validated AWS Secrets Manager to demonstrate secure credential storage, KMS-backed encryption, centralized secret lifecycle management, and cloud-native access control for production-style workloads.
+## Build Summary
 
+Provisioned AWS Secrets Manager to evaluate secure credential storage, encryption, and centralized secret lifecycle management in a production-aligned scenario.
+
+This build focuses on identity-driven access patterns versus hardcoded credentials, incorporating IAM policies, KMS-backed encryption, and secret versioning to validate secure access control, auditability, and operational governance.
 
 ## 🏗️ Environment Build Choices
 
