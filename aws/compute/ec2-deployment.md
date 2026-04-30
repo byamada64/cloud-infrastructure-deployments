@@ -1,8 +1,10 @@
 # EC2 Instance Provisioning + NGINX Deployment + Validation
 
-## 🎯 Objective
+## Build Summary
 
-Provisioned a repeatable EC2 instance in minutes from a chosen AMI to validate hosting, security controls, instance health, lifecycle cleanup, and cloud cost governance.
+Provisioned an Amazon EC2 instance to evaluate infrastructure-based compute deployment, OS-level control, and secure remote access in a production-aligned scenario.
+
+This build focuses on EC2 tradeoffs versus platform-managed services, incorporating AMI selection, security groups, SSH access, instance sizing, and public exposure controls to validate connectivity, security boundaries, and operational control.
 
 ## 🏗️ Environment Build Choices
 
