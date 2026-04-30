@@ -1,5 +1,11 @@
 # 🛠️ Ansible Linux Baseline Configuration
 
+## Build Summary
+
+Created an Ansible Linux baseline workflow to evaluate repeatable server configuration, package validation, and baseline readiness in a production-aligned scenario.
+
+This build focuses on configuration consistency versus manual setup, incorporating Ansible playbooks, SSH access, package management, service validation, and OS-level baseline checks within a governed lab environment.
+
 ## 🏗️ Environment Build Choices
 
 - Platform: KodeKloud Ansible Sandbox Lab
