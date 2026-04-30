@@ -1,5 +1,11 @@
 # 🩺 Ansible Linux Health Audit
 
+## Build Summary
+
+Created an Ansible health audit workflow to evaluate automated system inspection, baseline validation, and operational visibility across Linux servers in a production-aligned scenario.
+
+This build focuses on audit consistency versus manual inspection, incorporating Ansible playbooks, inventory targeting, uptime checks, disk utilization, memory review, service status, and repeatable reporting within a governed lab environment.
+
 ## 🏗️ Environment Build Choices
 
 - Platform: KodeKloud Ansible Sandbox Lab
