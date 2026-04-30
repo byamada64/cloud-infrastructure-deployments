@@ -4,7 +4,7 @@
 
 Provisioned an AWS Elastic Beanstalk environment to evaluate managed application deployment, platform abstraction, and automated scaling behavior in a production-aligned scenario.
 
-This build focuses on PaaS tradeoffs versus infrastructure-based deployments, incorporating IAM roles, environment configuration, scaling policies, and application deployment workflows to validate operational simplicity, service exposure, and platform-managed control.
+This build focuses on PaaS tradeoffs versus infrastructure-based deployments, incorporating IAM roles, environment configuration, scaling policies, and application deployment workflows to validate operational simplicity, service exposure, and governed lab environment.
 
 
 ## 🏗️ Environment Build Choices
