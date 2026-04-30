@@ -1,6 +1,10 @@
 # 🚀 AWS Elastic Beanstalk Deployment
 
-Provisioned and validated an AWS Elastic Beanstalk environment using Docker on Amazon Linux 2023. Built IAM roles, configured networking and scaling options, deployed a sample application, troubleshot failed custom deployments, corrected the Docker artifact, and successfully released a live custom web page through a public Elastic Beanstalk URL.
+## Build Summary
+
+Provisioned an AWS Elastic Beanstalk environment to evaluate managed application deployment, platform abstraction, and automated scaling behavior in a production-aligned scenario.
+
+This build focuses on PaaS tradeoffs versus infrastructure-based deployments, incorporating IAM roles, environment configuration, scaling policies, and application deployment workflows to validate operational simplicity, service exposure, and platform-managed control.
 
 
 ## 🏗️ Environment Build Choices
