@@ -133,7 +133,6 @@ Configuration:
 - SKU: Standard
 - Assignment: Static
 
----
 
 ### 7. Create Gateway Subnet (Critical)
 
