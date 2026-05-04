@@ -7,8 +7,13 @@ Hands-on Azure networking build focused on segmented virtual networking, subnet-
 
 Design and deploy an Azure network foundation using a segmented virtual network, dedicated Network Security Groups, subnet-level inbound controls, and a Route-Based VPN Gateway.
 
-This build demonstrates core Azure networking concepts used in enterprise environments including network segmentation, access control, gateway dependencies, and post-build validation.
+This build demonstrates core Azure networking concepts used in enterprise environments including:
 
+- Network segmentation  
+- Access control enforcement  
+- Azure Policy constraints  
+- Gateway dependencies  
+- Post-build validation  
 
 
 ## 🏗️ Environment Build Choices
@@ -19,7 +24,8 @@ This build demonstrates core Azure networking concepts used in enterprise enviro
 - VPN Gateway: `kk-vpn-gateway`
 - Route Table: `corp-app-rt`
 
-### Core Network Design
+
+## 🌐 Core Network Design
 
 A primary Azure VNet was created using a private RFC1918 address range and segmented into multiple functional subnets.
 
@@ -32,197 +38,227 @@ A primary Azure VNet was created using a private RFC1918 address range and segme
 - `DB` `/24`
 - `GatewaySubnet` `/27`
 
-### Network Security Groups Created
+
+## 🔐 Network Security Groups Created
 
 - `mgmt-nsg`
 - `dmz-nsg`
 - `app-nsg`
 - `db-nsg`
 
-### Public IP Resources Created
+
+## 🌍 Public IP Resources Created
 
 - `corp-vpn-pip`
 - `corp-vpn-pip02`
 
-### Architecture Choices
 
-- Used `/24` subnet sizing for core workload tiers.
-- Used `/27` subnet sizing for the Azure gateway subnet.
-- Created separate NSGs for each major subnet tier.
-- Used a segmented model to isolate management, DMZ, application, and database traffic zones.
-- Prepared route table resources for future routing customization.
+## 🧠 Architecture Choices
 
-### Constraints Encountered
+- Used `/24` subnet sizing for core workload tiers
+- Used `/27` subnet sizing for the Azure gateway subnet
+- Created separate NSGs per subnet tier
+- Designed segmented network for security boundaries
+- Enabled Active-Active VPN Gateway with dual Public IPs
 
-Azure sandbox policy required specific VPN Gateway settings:
+
+## ⚠️ Constraints Encountered (Azure Policy)
+
+Azure sandbox enforced:
 
 - Name: `kk-vpn-gateway`
-- Allowed SKU: `VpnGw1` / `VpnGw1AZ`
+- SKU: `VpnGw1` or `VpnGw1AZ`
 - Generation: `Generation1`
 - VPN Type: `RouteBased`
 
 
+## 🔁 Build Sequence (Critical Order)
 
-## 💻 Commands Used
+### 1. Create Virtual Network
 
-### Portal Actions
-
-This build was completed primarily through the Azure Portal.
-
-### Build Sequence Performed
-
-- Created `corp-vnet`
-- Defined address space
-- Created workload subnets
-- Created Network Security Groups
-- Added inbound firewall rules
-- Associated NSGs to subnets
-- Created Public IP resources
-- Created `GatewaySubnet`
-- Deployed VPN Gateway
-- Created route table
-- Reviewed monitoring tools
-
-### CLI / PowerShell / Bash
-
-No CLI tools were used during this deployment.
-
-### ARM / Template Review
-
-Azure deployment details were reviewed from the Azure Resource Manager deployment page.
+- Create `corp-vnet`
+- Define address space
+- Create all subnets (exclude GatewaySubnet initially if unsure)
 
 
-## 🔐 Inbound Firewall Rules Applied
+### 2. Create Subnets
 
-### Management Subnet (`mgmt-nsg`)
+- Management
+- DMZ
+- App
+- DB
 
-Used for management access and administrative connectivity.
+Verify CIDR ranges and segmentation.
 
-Typical inbound rules added:
 
+### 3. Create Network Security Groups
+
+- `mgmt-nsg`
+- `dmz-nsg`
+- `app-nsg`
+- `db-nsg`
+
+
+### 4. Configure Firewall Rules
+
+#### Management
 - RDP (3389)
 - SSH (22)
-- Restricted source access where possible
 
-### DMZ Subnet (`dmz-nsg`)
-
-Used for internet-facing workloads.
-
-Typical inbound rules added:
-
+#### DMZ
 - HTTP (80)
 - HTTPS (443)
 
-### App Subnet (`app-nsg`)
+#### App
+- Internal app ports only
 
-Used for internal application workloads.
-
-Typical inbound rules added:
-
-- App-specific internal ports
-- Restricted subnet-to-subnet traffic
-
-### DB Subnet (`db-nsg`)
-
-Used for backend database workloads.
-
-Typical inbound rules added:
-
-- Database ports from approved application subnet only
-- No broad internet-facing access
+#### DB
+- DB ports from App subnet only
 
 
-
-## 🔗 NSG Association to Subnets
-
-After rule creation, NSGs were associated to their matching subnet tiers:
+### 5. Associate NSGs to Subnets
 
 - `mgmt-nsg` → Management
 - `dmz-nsg` → DMZ
 - `app-nsg` → App
 - `db-nsg` → DB
 
-This provided subnet-level traffic control and separation between workloads.
+
+### 6. Create Public IP Addresses
+
+- `corp-vpn-pip`
+- `corp-vpn-pip02`
+
+Configuration:
+- SKU: Standard
+- Assignment: Static
 
 ---
 
+### 7. Create Gateway Subnet (Critical)
+
+- Name must be: `GatewaySubnet`
+- CIDR: `/27`
+
+⚠️ Required for VPN Gateway deployment
+
+
+### 8. Deploy VPN Gateway
+
+Configuration:
+
+- Name: `kk-vpn-gateway`
+- Gateway Type: VPN
+- VPN Type: RouteBased
+- SKU: `VpnGw1AZ`
+- Generation: `Generation1`
+- Active-Active: Enabled
+- BGP: Enabled
+- ASN: `65515`
+
+Networking:
+- VNet: `corp-vnet`
+- Subnet: `GatewaySubnet`
+
+Public IPs:
+- Primary: `corp-vpn-pip`
+- Secondary: `corp-vpn-pip02`
+
+⏱️ Deployment time: ~30–45 minutes
+
+
+### 9. Create Route Table
+
+- Name: `corp-app-rt`
+- Reserved for future routing scenarios
+
+
+### 10. Validation & Monitoring
+
+Verify:
+
+- VPN Gateway deployed successfully
+- Public IPs attached
+- Metrics available
+- Resource Visualizer reflects topology
+
+Tools used:
+
+- Network Watcher
+- VPN diagnostics
+- Metrics & Logs
+
+
+## 🔐 Inbound Firewall Summary
+
+| Subnet | Purpose | Rules |
+|------|--------|------|
+| Management | Admin access | RDP, SSH |
+| DMZ | Public apps | HTTP, HTTPS |
+| App | Internal apps | App ports |
+| DB | Backend | DB ports (restricted) |
+
+
+## 🔗 NSG Associations
+
+- Management → `mgmt-nsg`
+- DMZ → `dmz-nsg`
+- App → `app-nsg`
+- DB → `db-nsg`
+
+
 ## ✅ Validation
 
-### Deployment Success
+Confirmed:
 
-Confirmed the following resources were created:
-
-- `corp-vnet`
-- All planned subnets
-- NSGs
-- Public IPs
-- Route Table
-- `kk-vpn-gateway`
-
-### Operational Checks
-
-Reviewed:
-
-- Network Watcher Center
-- VPN troubleshoot blade
-- Usage + quotas
-- Diagnostic logs
-- Resource inventory
-- VPN Gateway metrics
-
-### Final State
-
-The Azure VPN Gateway completed deployment successfully and was visible in the portal with metrics available.
+- VNet and subnets created
+- NSGs applied
+- Public IPs created
+- VPN Gateway deployed
+- Metrics and diagnostics accessible
 
 
 ## 🧯 Lessons Learned
 
 ### Issues Encountered
 
-VPN Gateway deployment initially failed because the reserved subnet requirement was not met.
+- Gateway deployment failed due to:
+  - Incorrect subnet name
+  - Policy restrictions
+  - Invalid SKU / Generation
 
-Azure required the subnet to be named exactly:
-
-`GatewaySubnet`
-
-Temporary retriable errors were also encountered while Azure networking resources were updating.
 
 ### Fixes Applied
 
-- Removed incorrectly named gateway subnet
-- Recreated subnet as `GatewaySubnet`
-- Confirmed gateway subnet during review stage
-- Re-ran gateway deployment successfully
+- Renamed subnet to `GatewaySubnet`
+- Changed SKU to approved value
+- Set Generation to `Generation1`
+- Updated gateway name to match policy
+
 
 ### Key Takeaways
 
-- Build the VNet and subnet structure first.
-- Apply NSGs after subnet creation.
-- Create firewall rules before association where practical.
-- Azure VPN Gateway requires a dedicated `GatewaySubnet`.
-- `/27` is a strong subnet size for gateway deployments.
-- Network Watcher is useful for post-build validation.
+- `GatewaySubnet` is mandatory and name-sensitive
+- Azure Policy can override configurations
+- VPN Gateway deployments take time (~30+ min)
+- Public IPs must exist before gateway deployment
+- Always validate before deployment
+
 
 ## 🚀 Future Improvements
 
-- Add Application Gateway
 - Add Local Network Gateway
-- Add site-to-site VPN testing
-- Add route table associations
+- Configure Site-to-Site VPN
 - Add Azure Firewall
-- Convert build to Terraform
-- Convert build to Ansible
+- Implement route table associations
+- Convert to Terraform
+- Automate with Ansible
 
-## 🧹 Final Hygiene Cleanup
 
-### Cleanup Performed
+## 🧹 Cleanup Recommendations
 
-No cleanup was performed during the initial session.
-
-### Recommended Cleanup
-
-- Remove unused public IP resources
-- Remove failed deployment remnants
-- Review quota recovery
+- Remove unused Public IPs
+- Delete failed deployments
+- Review quotas
 - Remove unused NSGs
-- Delete temporary route resources if not needed
+- Clean up test route tables
