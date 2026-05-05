@@ -52,39 +52,41 @@ This build demonstrates real-world infrastructure flow including compute provisi
 
 ### SSH Access
 
-ssh -i web-vm-01_key.pem azureuser@<VM01_PUBLIC_IP>  
-ssh -i web-vm-02_key.pem azureuser@<VM02_PUBLIC_IP>  
+- `ssh -i web-vm-01_key.pem azureuser@<VM01_PUBLIC_IP>` — Connect to Web Server 01  
+- `ssh -i web-vm-02_key.pem azureuser@<VM02_PUBLIC_IP>` — Connect to Web Server 02  
 
 ### Fix Key Permissions
 
-chmod 400 web-vm-01_key.pem  
-chmod 400 web-vm-02_key.pem  
+- `chmod 400 web-vm-01_key.pem` — Secure private key for VM-01  
+- `chmod 400 web-vm-02_key.pem` — Secure private key for VM-02  
 
 ### Install NGINX
 
-sudo apt update -y  
-sudo apt install nginx -y  
-sudo systemctl enable nginx  
-sudo systemctl start nginx  
+- `sudo apt update -y` — Refresh package repositories  
+- `sudo apt install nginx -y` — Install NGINX web server  
+- `sudo systemctl enable nginx` — Enable service on boot  
+- `sudo systemctl start nginx` — Start NGINX service  
 
 ### Configure Web Pages
 
-VM-01  
-echo "OLD APP - Web Server 01" | sudo tee /var/www/html/index.html  
-
-VM-02  
-echo "NEW APP - Web Server 02" | sudo tee /var/www/html/index.html  
+- `echo "OLD APP - Web Server 01" | sudo tee /var/www/html/index.html` — Configure VM-01 response  
+- `echo "NEW APP - Web Server 02" | sudo tee /var/www/html/index.html` — Configure VM-02 response  
 
 ### Validation
 
-curl http://localhost  
-curl http://<VM_PUBLIC_IP>  
+- `curl http://localhost` — Validate local NGINX response  
+- `curl http://<VM_PUBLIC_IP>` — Validate external VM access  
 
 ### Load Balancer Testing
 
-for i in {1..20}; do curl http://<LB_PUBLIC_IP>; done  
+- `for i in {1..20}; do curl http://<LB_PUBLIC_IP>; done` — Test traffic distribution across backend pool  
+- `curl --header "Cache-Control: no-cache" http://<LB_PUBLIC_IP>` — Force fresh request (avoid caching behavior)  
 
-curl --header "Cache-Control: no-cache" http://<LB_PUBLIC_IP>  
+### Failure Simulation
+
+- `sudo systemctl stop nginx` — Simulate application-level failure  
+- `sudo systemctl start nginx` — Restore service  
+- `sudo shutdown now` — Simulate full VM failure  
 
 
 ## 🔁 ACTUAL BUILD FLOW (Portal-Based — CORRECT ORDER)
@@ -114,8 +116,8 @@ Download `.pem` key files
 
 On local machine:
 
-chmod 400 web-vm-01_key.pem  
-chmod 400 web-vm-02_key.pem  
+- `chmod 400 web-vm-01_key.pem`
+- `chmod 400 web-vm-02_key.pem`
 
 SSH into both VMs
 
@@ -126,10 +128,10 @@ SSH into both VMs
 
 On BOTH VMs:
 
-sudo apt update -y  
-sudo apt install nginx -y  
-sudo systemctl enable nginx  
-sudo systemctl start nginx  
+- `sudo apt update -y`
+- `sudo apt install nginx -y`
+- `sudo systemctl enable nginx`
+- `sudo systemctl start nginx`
 
 ⚠️ Ensure service is running before moving forward  
 
@@ -138,11 +140,11 @@ sudo systemctl start nginx
 
 On VM-01:
 
-echo "OLD APP - Web Server 01" | sudo tee /var/www/html/index.html  
+- `echo "OLD APP - Web Server 01" | sudo tee /var/www/html/index.html`
 
 On VM-02:
 
-echo "NEW APP - Web Server 02" | sudo tee /var/www/html/index.html  
+- `echo "NEW APP - Web Server 02" | sudo tee /var/www/html/index.html`
 
 ⚠️ Required to visually confirm load balancing behavior  
 
@@ -151,8 +153,8 @@ echo "NEW APP - Web Server 02" | sudo tee /var/www/html/index.html
 
 From local machine:
 
-curl http://<VM01_PUBLIC_IP>  
-curl http://<VM02_PUBLIC_IP>  
+- `curl http://<VM01_PUBLIC_IP>`
+- `curl http://<VM02_PUBLIC_IP>`
 
 Expected:
 
@@ -219,7 +221,7 @@ Add:
 
 Run:
 
-for i in {1..20}; do curl http://<LB_PUBLIC_IP>; done  
+- `for i in {1..20}; do curl http://<LB_PUBLIC_IP>; done`
 
 Expected:
 
@@ -231,24 +233,24 @@ NEW APP - Web Server 02
 
 ### 1️⃣2️⃣ Observe Cache Behavior
 
-curl http://<LB_PUBLIC_IP>  
+- `curl http://<LB_PUBLIC_IP>`
 
 May return same server repeatedly  
 
 Force refresh:
 
-curl --header "Cache-Control: no-cache" http://<LB_PUBLIC_IP>  
+- `curl --header "Cache-Control: no-cache" http://<LB_PUBLIC_IP>`
 
 
 ### 1️⃣3️⃣ Simulate Failure
 
 On VM-01:
 
-sudo systemctl stop nginx  
+- `sudo systemctl stop nginx`
 
 Test again:
 
-for i in {1..10}; do curl http://<LB_PUBLIC_IP>; done  
+- `for i in {1..10}; do curl http://<LB_PUBLIC_IP>; done`
 
 Expected:
 
@@ -259,7 +261,7 @@ NEW APP - Web Server 02
 
 ### 1️⃣4️⃣ Restore Service
 
-sudo systemctl start nginx  
+- `sudo systemctl start nginx`
 
 Traffic resumes across both servers  
 
@@ -291,7 +293,7 @@ Step C — Reattach Rule
 
 ### 1️⃣7️⃣ Final Validation
 
-for i in {1..10}; do curl http://<LB_PUBLIC_IP>; done  
+- `for i in {1..10}; do curl http://<LB_PUBLIC_IP>; done`
 
 Expected:
 
