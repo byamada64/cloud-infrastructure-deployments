@@ -37,14 +37,17 @@ This build demonstrates real-world infrastructure flow including compute provisi
 - Simulate backend failure and backend removal scenarios
 
 
-### Design Decisions
+## Design Decisions
 
-- Standard Load Balancer for production-aligned behavior
-- Public Load Balancer for browser and curl-based testing
-- TCP-based rule using port 80
-- HTTP health probe using `/`
-- Same VNet/subnet for backend pool eligibility
-- Public IP created separately for naming and control
+- Standard Load Balancer for production-aligned behavior  
+- Public Load Balancer for browser and curl-based testing  
+- TCP-based rule using port 80  
+- HTTP health probe using `/`  
+- Same VNet/subnet for backend pool eligibility  
+- Public IP created separately for naming and control  
+
+
+🔁 ACTUAL BUILD FLOW (Portal-Based — CORRECT ORDER)
 
 
 ## 🔁 ACTUAL BUILD FLOW (Portal-Based — CORRECT ORDER)
