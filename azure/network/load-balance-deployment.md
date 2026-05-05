@@ -241,9 +241,29 @@ Run:
 Expected:
 
 OLD APP - Web Server 01  
+
 NEW APP - Web Server 02  
 
-⚠️ Traffic is hash-based (not strict round robin)  
+⚠️ Traffic is hash-based (not strict round robin)
+
+
+#### 🔍 Azure Portal Validation (CRITICAL)
+
+Navigation:
+
+- Azure Portal → Load Balancer → `web-lb`
+
+- Monitoring → Insights
+
+Check:
+
+- Backend pool shows:
+
+  - `web-vm-01` → Healthy (green)
+
+  - `web-vm-02` → Healthy (green)
+
+⚠️ Confirms both VMs are actively receiving traffic
 
 
 ### 1️⃣2️⃣ Observe Cache Behavior
@@ -261,9 +281,16 @@ Force refresh:
 
 On VM-01:
 
+#### 🔹 Stop Application (VM-01)
+
+SSH into `web-vm-01`:
+
 - `sudo systemctl stop nginx`
 
-Test again:
+
+#### 🔹 Test Load Balancer Behavior
+
+From local machine:
 
 - `for i in {1..10}; do curl http://<LB_PUBLIC_IP>; done`
 
@@ -271,22 +298,64 @@ Expected:
 
 NEW APP - Web Server 02  
 
-⚠️ Health probe removes failed instance automatically  
+⚠️ Traffic should ONLY hit VM-02
 
+
+#### 🔍 Azure Portal Validation (Failure State)
+
+Navigation:
+
+- Azure Portal → Load Balancer → `web-lb`
+
+- Monitoring → Insights
+
+Observed:
+
+- `web-vm-01` → Unhealthy (red)
+
+- `web-vm-02` → Healthy (green)
+
+⚠️ Health probe removes failed backend automatically
+
+⚠️ VM is still running — only app is down
 
 ### 1️⃣4️⃣ Restore Service
 
+#### 🔹 Restart Application (VM-01)
+
+SSH into `web-vm-01`:
+
 - `sudo systemctl start nginx`
 
-Traffic resumes across both servers  
+
+#### 🔹 Test Load Balancer Again
+
+- `for i in {1..10}; do curl http://<LB_PUBLIC_IP>; done`
+
+Expected:
+
+Traffic alternates between:
+
+OLD APP - Web Server 01  
+
+NEW APP - Web Server 02  
 
 
-### 1️⃣5️⃣ Simulate Backend Removal (Migration Scenario)
+#### 🔍 Azure Portal Validation (Recovery)
 
-Attempt to remove VM-02 directly → FAIL  
+Navigation:
 
-⚠️ Azure blocks removal due to rule dependency  
+- Azure Portal → Load Balancer → `web-lb`
 
+- Monitoring → Insights
+
+Observed:
+
+- `web-vm-01` → Healthy (green)
+
+- `web-vm-02` → Healthy (green)
+
+⚠️ Both backends restored to active rotation
 
 ### 1️⃣6️⃣ Correct Removal Process
 
