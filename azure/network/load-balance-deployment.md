@@ -7,10 +7,10 @@ Hands-on Azure infrastructure build focused on deploying multiple Linux web serv
 
 Design and deploy a highly available web tier using:
 
-- Two Linux Virtual Machines
-- NGINX web servers
-- Azure Load Balancer (Layer 4)
-- Health probes for traffic control
+- Two Linux Virtual Machines  
+- NGINX web servers  
+- Azure Load Balancer (Layer 4)  
+- Health probes for traffic control  
 
 This build demonstrates real-world infrastructure flow including compute provisioning, service validation, load balancing, failure handling, and backend pool modification aligned to migration and operational scenarios.
 
@@ -19,33 +19,33 @@ This build demonstrates real-world infrastructure flow including compute provisi
 
 ### Azure Services Used
 
-- Virtual Machines (Linux)
-- Virtual Network (VNet)
-- Network Security Groups (NSGs)
-- Azure Load Balancer (Standard)
-- Public IP Address
-- Health Probes
+- Virtual Machines (Linux)  
+- Virtual Network (VNet)  
+- Network Security Groups (NSGs)  
+- Azure Load Balancer (Standard)  
+- Public IP Address  
+- Health Probes  
 
 
 ### Architecture Approach
 
-- Build and validate **VMs first (baseline validation)**
-- Use **NGINX for lightweight HTTP testing**
-- Introduce **Load Balancer after confirming app works**
+- Build and validate **VMs first (baseline validation)**  
+- Use **NGINX for lightweight HTTP testing**  
+- Introduce **Load Balancer after confirming app works**  
 - Validate:
-  - Traffic distribution
-  - Health probe behavior
-  - Failure scenarios
-- Simulate **backend removal (migration use case)**
+  - Traffic distribution  
+  - Health probe behavior  
+  - Failure scenarios  
+- Simulate **backend removal (migration use case)**  
 
 
 ### Design Decisions
 
-- Standard Load Balancer (production-aligned)
-- TCP-based rule (Layer 4)
-- HTTP health probe for availability
-- Same VNet/subnet requirement for backend pool
-- Public frontend IP for testing
+- Standard Load Balancer (production-aligned)  
+- TCP-based rule (Layer 4)  
+- HTTP health probe for availability  
+- Same VNet/subnet requirement for backend pool  
+- Public frontend IP for testing  
 
 
 ## 💻 Commands Used
@@ -79,12 +79,12 @@ This build demonstrates real-world infrastructure flow including compute provisi
 
 ### Load Balancer Testing
 
-- `for i in {1..20}; do curl http://<LB_PUBLIC_IP>; done` — Test traffic distribution across backend pool  
-- `curl --header "Cache-Control: no-cache" http://<LB_PUBLIC_IP>` — Force fresh request (avoid caching behavior)  
+- `for i in {1..20}; do curl http://<LB_PUBLIC_IP>; done` — Test traffic distribution  
+- `curl --header "Cache-Control: no-cache" http://<LB_PUBLIC_IP>` — Force fresh request  
 
 ### Failure Simulation
 
-- `sudo systemctl stop nginx` — Simulate application-level failure  
+- `sudo systemctl stop nginx` — Simulate application failure  
 - `sudo systemctl start nginx` — Restore service  
 - `sudo shutdown now` — Simulate full VM failure  
 
@@ -96,266 +96,226 @@ This build demonstrates real-world infrastructure flow including compute provisi
 
 Create two Linux VMs:
 
-- `web-vm-01`
-- `web-vm-02`
+- `web-vm-01`  
+- `web-vm-02`  
 
 Settings:
 
-- Same VNet and subnet
-- Public IP enabled
+- Same VNet and subnet  
+- Public IP enabled  
 - Inbound ports:
-  - SSH (22)
-  - HTTP (80)
+  - SSH (22)  
+  - HTTP (80)  
 
-Download `.pem` key files
+Download `.pem` key files  
 
-⚠️ Both VMs must be in the SAME VNet for backend pool eligibility  
+  ⚠️ Both VMs must be in the SAME VNet for backend pool eligibility  
 
 
 ### 2️⃣ Configure Access to VMs (CRITICAL STEP)
 
 On local machine:
 
-- `chmod 400 web-vm-01_key.pem`
-- `chmod 400 web-vm-02_key.pem`
+- `chmod 400 web-vm-01_key.pem`  
+- `chmod 400 web-vm-02_key.pem`  
 
-SSH into both VMs
+SSH into both VMs  
 
-⚠️ Without correct permissions, SSH will fail  
+  ⚠️ Without correct permissions, SSH will fail  
 
 
 ### 3️⃣ Install Web Server (NGINX)
 
 On BOTH VMs:
 
-- `sudo apt update -y`
-- `sudo apt install nginx -y`
-- `sudo systemctl enable nginx`
-- `sudo systemctl start nginx`
+- `sudo apt update -y`  
+- `sudo apt install nginx -y`  
+- `sudo systemctl enable nginx`  
+- `sudo systemctl start nginx`  
 
-⚠️ Ensure service is running before moving forward  
+  ⚠️ Ensure service is running before moving forward  
 
 
 ### 4️⃣ Configure Unique Web Responses
 
 On VM-01:
 
-- `echo "OLD APP - Web Server 01" | sudo tee /var/www/html/index.html`
+- `echo "OLD APP - Web Server 01" | sudo tee /var/www/html/index.html`  
 
 On VM-02:
 
-- `echo "NEW APP - Web Server 02" | sudo tee /var/www/html/index.html`
+- `echo "NEW APP - Web Server 02" | sudo tee /var/www/html/index.html`  
 
-⚠️ Required to visually confirm load balancing behavior  
+  ⚠️ Required to visually confirm load balancing behavior  
 
 
 ### 5️⃣ Validate VM Connectivity (MANDATORY BEFORE LB)
 
 From local machine:
 
-- `curl http://<VM01_PUBLIC_IP>`
-- `curl http://<VM02_PUBLIC_IP>`
+- `curl http://<VM01_PUBLIC_IP>`  
+- `curl http://<VM02_PUBLIC_IP>`  
 
 Expected:
 
-- VM-01 returns OLD APP
-- VM-02 returns NEW APP
+- VM-01 returns OLD APP  
+- VM-02 returns NEW APP  
 
-⚠️ If this fails → STOP  
-⚠️ Fix NSG / NGINX before building LB  
+  ⚠️ If this fails → STOP  
+  ⚠️ Fix NSG / NGINX before building LB  
 
 
 ### 6️⃣ Create Azure Load Balancer
 
-- Name: `web-lb`
-- SKU: Standard
-- Type: Public
-- Tier: Regional
+- Name: `web-lb`  
+- SKU: Standard  
+- Type: Public  
+- Tier: Regional  
 
-⚠️ Basic SKU not used (non-production behavior)  
+  ⚠️ Basic SKU not used (non-production behavior)  
+
 
 ### 🌐 Public IP (Pre-Creation Step)
 
 Created Public IP separately before attaching to Load Balancer:
 
-- Name: `web-lb-pip`
-- SKU: Standard
-- Assignment: Static
+- Name: `web-lb-pip`  
+- SKU: Standard  
+- Assignment: Static  
 
 Navigation:
 
-- Azure Portal → Public IP addresses → Create
+- Azure Portal → Public IP addresses → Create  
 
-⚠️ This Public IP is attached in the next step (Frontend IP)  
-⚠️ Preferred over auto-created IP for naming and control  
+  ⚠️ This Public IP is attached in the next step (Frontend IP)  
+  ⚠️ Preferred over auto-created IP for naming and control  
 
 
 ### 7️⃣ Configure Frontend IP
 
-- Name: `web-lb-fe`
-- Public IP: `web-lb-pip` (existing)
+- Name: `web-lb-fe`  
+- Public IP: `web-lb-pip` (existing)  
 
-⚠️ Required entry point for external traffic  
+  ⚠️ Required entry point for external traffic  
 
 
 ### 8️⃣ Create Backend Pool
 
-- Name: `web-backend-pool`
+- Name: `web-backend-pool`  
 
 Add:
 
-- web-vm-01
-- web-vm-02
+- web-vm-01  
+- web-vm-02  
 
-⚠️ Only VMs in same VNet will appear  
+  ⚠️ Only VMs in same VNet will appear  
 
 
 ### 9️⃣ Configure Health Probe
 
-- Name: `http-probe`
-- Protocol: HTTP
-- Port: 80
-- Path: /
+- Name: `http-probe`  
+- Protocol: HTTP  
+- Port: 80  
+- Path: `/`  
 
-⚠️ Health probe determines traffic eligibility  
+  ⚠️ Health probe determines traffic eligibility  
 
 
 ### 🔟 Create Load Balancing Rule
 
-- Name: `web-http-rule`
-- Protocol: TCP
-- Port: 80 → 80
-- Backend pool: web-backend-pool
-- Health probe: http-probe
-- Session persistence: None
+- Name: `web-http-rule`  
+- Protocol: TCP  
+- Port: 80 → 80  
+- Backend pool: web-backend-pool  
+- Health probe: http-probe  
+- Session persistence: None  
 
-⚠️ This ties frontend → backend pool  
+  ⚠️ This ties frontend → backend pool  
 
 
 ### 1️⃣1️⃣ Validate Load Balancer
 
 Run:
 
-- `for i in {1..20}; do curl http://<LB_PUBLIC_IP>; done`
+- `for i in {1..20}; do curl http://<LB_PUBLIC_IP>; done`  
 
 Expected:
 
 OLD APP - Web Server 01  
-
 NEW APP - Web Server 02  
 
-⚠️ Traffic is hash-based (not strict round robin)
+  ⚠️ Traffic is hash-based (not strict round robin)  
 
 
 #### 🔍 Azure Portal Validation (CRITICAL)
 
 Navigation:
 
-- Azure Portal → Load Balancer → `web-lb`
-
-- Monitoring → Insights
+- Azure Portal → Load Balancer → `web-lb`  
+- Monitoring → Insights  
 
 Check:
 
-- Backend pool shows:
+- `web-vm-01` → Healthy (green)  
+- `web-vm-02` → Healthy (green)  
 
-  - `web-vm-01` → Healthy (green)
-
-  - `web-vm-02` → Healthy (green)
-
-⚠️ Confirms both VMs are actively receiving traffic
+  ⚠️ Confirms both VMs are actively receiving traffic  
 
 
 ### 1️⃣2️⃣ Observe Cache Behavior
 
-- `curl http://<LB_PUBLIC_IP>`
+- `curl http://<LB_PUBLIC_IP>`  
 
 May return same server repeatedly  
 
 Force refresh:
 
-- `curl --header "Cache-Control: no-cache" http://<LB_PUBLIC_IP>`
+- `curl --header "Cache-Control: no-cache" http://<LB_PUBLIC_IP>`  
 
 
 ### 1️⃣3️⃣ Simulate Failure
 
-On VM-01:
-
 #### 🔹 Stop Application (VM-01)
 
-SSH into `web-vm-01`:
-
-- `sudo systemctl stop nginx`
-
+- `sudo systemctl stop nginx`  
 
 #### 🔹 Test Load Balancer Behavior
 
-From local machine:
-
-- `for i in {1..10}; do curl http://<LB_PUBLIC_IP>; done`
+- `for i in {1..10}; do curl http://<LB_PUBLIC_IP>; done`  
 
 Expected:
 
 NEW APP - Web Server 02  
 
-⚠️ Traffic should ONLY hit VM-02
+  ⚠️ Traffic should ONLY hit VM-02  
 
 
 #### 🔍 Azure Portal Validation (Failure State)
 
-Navigation:
+- `web-vm-01` → Unhealthy (red)  
+- `web-vm-02` → Healthy (green)  
 
-- Azure Portal → Load Balancer → `web-lb`
+  ⚠️ Health probe removes failed backend automatically  
+  ⚠️ VM is still running — only app is down  
 
-- Monitoring → Insights
-
-Observed:
-
-- `web-vm-01` → Unhealthy (red)
-
-- `web-vm-02` → Healthy (green)
-
-⚠️ Health probe removes failed backend automatically
-
-⚠️ VM is still running — only app is down
 
 ### 1️⃣4️⃣ Restore Service
 
-#### 🔹 Restart Application (VM-01)
+- `sudo systemctl start nginx`  
 
-SSH into `web-vm-01`:
-
-- `sudo systemctl start nginx`
-
-
-#### 🔹 Test Load Balancer Again
-
-- `for i in {1..10}; do curl http://<LB_PUBLIC_IP>; done`
+- `for i in {1..10}; do curl http://<LB_PUBLIC_IP>; done`  
 
 Expected:
 
-Traffic alternates between:
-
 OLD APP - Web Server 01  
-
 NEW APP - Web Server 02  
-
 
 #### 🔍 Azure Portal Validation (Recovery)
 
-Navigation:
+- Both VMs return to Healthy (green)  
 
-- Azure Portal → Load Balancer → `web-lb`
+  ⚠️ Both backends restored to active rotation  
 
-- Monitoring → Insights
-
-Observed:
-
-- `web-vm-01` → Healthy (green)
-
-- `web-vm-02` → Healthy (green)
-
-⚠️ Both backends restored to active rotation
 
 ### 1️⃣6️⃣ Correct Removal Process
 
@@ -377,7 +337,7 @@ Step C — Reattach Rule
 
 ### 1️⃣7️⃣ Final Validation
 
-- `for i in {1..10}; do curl http://<LB_PUBLIC_IP>; done`
+- `for i in {1..10}; do curl http://<LB_PUBLIC_IP>; done`  
 
 Expected:
 
@@ -399,7 +359,7 @@ OLD APP - Web Server 01
 ### Issues Encountered
 
 - SSH failures due to incorrect key permissions  
-- Load Balancer initially appeared “sticky” (cache behavior)  
+- Load Balancer appeared “sticky” (cache behavior)  
 - Backend pool removal blocked by rule dependency  
 - Temporary connection timeouts during state changes  
 
