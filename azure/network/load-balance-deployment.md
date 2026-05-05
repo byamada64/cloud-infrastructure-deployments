@@ -174,6 +174,21 @@ Expected:
 
 ⚠️ Basic SKU not used (non-production behavior)  
 
+### 🌐 Public IP (Pre-Creation Step)
+
+Created Public IP separately before attaching to Load Balancer:
+
+- Name: `web-lb-pip`
+- SKU: Standard
+- Assignment: Static
+
+Navigation:
+
+- Azure Portal → Public IP addresses → Create
+
+⚠️ This Public IP is attached in the next step (Frontend IP)  
+⚠️ Preferred over auto-created IP for naming and control  
+
 
 ### 7️⃣ Configure Frontend IP
 
