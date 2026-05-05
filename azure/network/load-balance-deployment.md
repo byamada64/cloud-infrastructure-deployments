@@ -47,7 +47,7 @@ This build demonstrates real-world infrastructure flow including compute provisi
 - Public IP created separately for naming and control  
 
 
-🔁 ACTUAL BUILD FLOW (Portal-Based — CORRECT ORDER)
+## 🔁 ACTUAL BUILD FLOW (Portal-Based — CORRECT ORDER)
 
 
 ## 🏗️ VM & Base Infrastructure Build
