@@ -55,8 +55,9 @@ This build demonstrates real-world infrastructure flow including compute provisi
 ### 1️⃣ Create Virtual Machines
 
 Create two Linux VMs:
-- `web-vm-01`
-- `web-vm-02`
+
+- web-vm-01
+- web-vm-02
 
 Settings:
 
