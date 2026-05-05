@@ -109,7 +109,7 @@ Settings:
 
 Download `.pem` key files  
 
-  ⚠️ Both VMs must be in the SAME VNet for backend pool eligibility  
+⚠️ Both VMs must be in the SAME VNet for backend pool eligibility  
 
 
 ### 2️⃣ Configure Access to VMs (CRITICAL STEP)
@@ -121,7 +121,7 @@ On local machine:
 
 SSH into both VMs  
 
-  ⚠️ Without correct permissions, SSH will fail  
+⚠️ Without correct permissions, SSH will fail  
 
 
 ### 3️⃣ Install Web Server (NGINX)
@@ -133,7 +133,7 @@ On BOTH VMs:
 - `sudo systemctl enable nginx`  
 - `sudo systemctl start nginx`  
 
-  ⚠️ Ensure service is running before moving forward  
+⚠️ Ensure service is running before moving forward  
 
 
 ### 4️⃣ Configure Unique Web Responses
@@ -146,7 +146,7 @@ On VM-02:
 
 - `echo "NEW APP - Web Server 02" | sudo tee /var/www/html/index.html`  
 
-  ⚠️ Required to visually confirm load balancing behavior  
+⚠️ Required to visually confirm load balancing behavior  
 
 
 ### 5️⃣ Validate VM Connectivity (MANDATORY BEFORE LB)
@@ -161,8 +161,10 @@ Expected:
 - VM-01 returns OLD APP  
 - VM-02 returns NEW APP  
 
-  ⚠️ If this fails → STOP  
-  ⚠️ Fix NSG / NGINX before building LB  
+⚠️ Important:
+
+- If this fails → STOP  
+- Fix NSG / NGINX before building LB  
 
 
 ### 6️⃣ Create Azure Load Balancer
@@ -172,7 +174,7 @@ Expected:
 - Type: Public  
 - Tier: Regional  
 
-  ⚠️ Basic SKU not used (non-production behavior)  
+⚠️ Basic SKU not used (non-production behavior)  
 
 
 ### 🌐 Public IP (Pre-Creation Step)
@@ -187,8 +189,10 @@ Navigation:
 
 - Azure Portal → Public IP addresses → Create  
 
-  ⚠️ This Public IP is attached in the next step (Frontend IP)  
-  ⚠️ Preferred over auto-created IP for naming and control  
+⚠️ Important:
+
+- This Public IP is attached in the next step (Frontend IP)  
+- Preferred over auto-created IP for naming and control  
 
 
 ### 7️⃣ Configure Frontend IP
@@ -196,7 +200,7 @@ Navigation:
 - Name: `web-lb-fe`  
 - Public IP: `web-lb-pip` (existing)  
 
-  ⚠️ Required entry point for external traffic  
+⚠️ Required entry point for external traffic  
 
 
 ### 8️⃣ Create Backend Pool
@@ -208,7 +212,7 @@ Add:
 - web-vm-01  
 - web-vm-02  
 
-  ⚠️ Only VMs in same VNet will appear  
+⚠️ Only VMs in same VNet will appear  
 
 
 ### 9️⃣ Configure Health Probe
@@ -218,7 +222,7 @@ Add:
 - Port: 80  
 - Path: `/`  
 
-  ⚠️ Health probe determines traffic eligibility  
+⚠️ Health probe determines traffic eligibility  
 
 
 ### 🔟 Create Load Balancing Rule
@@ -230,7 +234,7 @@ Add:
 - Health probe: http-probe  
 - Session persistence: None  
 
-  ⚠️ This ties frontend → backend pool  
+⚠️ This ties frontend → backend pool  
 
 
 ### 1️⃣1️⃣ Validate Load Balancer
@@ -244,7 +248,7 @@ Expected:
 OLD APP - Web Server 01  
 NEW APP - Web Server 02  
 
-  ⚠️ Traffic is hash-based (not strict round robin)  
+⚠️ Traffic is hash-based (not strict round robin)  
 
 
 #### 🔍 Azure Portal Validation (CRITICAL)
@@ -259,7 +263,7 @@ Check:
 - `web-vm-01` → Healthy (green)  
 - `web-vm-02` → Healthy (green)  
 
-  ⚠️ Confirms both VMs are actively receiving traffic  
+⚠️ Confirms both VMs are actively receiving traffic  
 
 
 ### 1️⃣2️⃣ Observe Cache Behavior
@@ -287,7 +291,7 @@ Expected:
 
 NEW APP - Web Server 02  
 
-  ⚠️ Traffic should ONLY hit VM-02  
+⚠️ Traffic should ONLY hit VM-02  
 
 
 #### 🔍 Azure Portal Validation (Failure State)
@@ -295,8 +299,10 @@ NEW APP - Web Server 02
 - `web-vm-01` → Unhealthy (red)  
 - `web-vm-02` → Healthy (green)  
 
-  ⚠️ Health probe removes failed backend automatically  
-  ⚠️ VM is still running — only app is down  
+⚠️ Important:
+
+- Health probe removes failed backend automatically  
+- VM is still running — only app is down  
 
 
 ### 1️⃣4️⃣ Restore Service
@@ -310,11 +316,12 @@ Expected:
 OLD APP - Web Server 01  
 NEW APP - Web Server 02  
 
+
 #### 🔍 Azure Portal Validation (Recovery)
 
 - Both VMs return to Healthy (green)  
 
-  ⚠️ Both backends restored to active rotation  
+⚠️ Both backends restored to active rotation  
 
 
 ### 1️⃣6️⃣ Correct Removal Process
