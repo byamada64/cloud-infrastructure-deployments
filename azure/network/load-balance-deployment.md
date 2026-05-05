@@ -116,12 +116,14 @@ Download `.pem` key files
 
 On local machine:
 
-- `chmod 400 web-vm-01_key.pem`  
-- `chmod 400 web-vm-02_key.pem`  
+- `chmod 400 web-vm-01_key.pem`
+- `chmod 400 web-vm-02_key.pem`
 
-SSH into both VMs  
+SSH into both VMs
 
-- ⚠️ Without correct permissions, SSH will fail  
+⚠️ Important:
+
+    Without correct permissions, SSH will fail
 
 
 ### 3️⃣ Install Web Server (NGINX)
