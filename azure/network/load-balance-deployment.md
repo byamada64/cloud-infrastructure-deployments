@@ -50,7 +50,7 @@ This build demonstrates real-world infrastructure flow including compute provisi
 ## 🔁 ACTUAL BUILD FLOW (Portal-Based — CORRECT ORDER)
 
 
-## 🏗️ 1. VM & Base Infrastructure Build
+## 🏗️ VM & Base Infrastructure Build
 
 ### 1️⃣ Create Virtual Machines
 
@@ -117,7 +117,7 @@ Important:
 - Unique responses make it easy to confirm which backend is serving traffic.
 
 
-## 🧪 2. Baseline Validation Before Load Balancer
+## 🧪 Baseline Validation Before Load Balancer
 
 ### 1️⃣ Validate Local NGINX Response
 
@@ -148,7 +148,7 @@ Important:
 - If direct VM validation fails, fix NSG rules or NGINX before creating the Load Balancer.
 
 
-## ⚖️ 3. Load Balancer Deployment
+## ⚖️ Load Balancer Deployment
 
 ### 1️⃣ Create Azure Load Balancer
 
@@ -252,7 +252,7 @@ Reason:
 - Outbound SNAT tuning is a separate NAT Gateway / egress control topic.
 
 
-## 🔄 4. Traffic Validation & Behavior
+## 🔄 Traffic Validation & Behavior
 
 ### 1️⃣ Validate Load Distribution
 
@@ -298,7 +298,7 @@ Purpose:
 - Confirms both backend VMs are healthy and eligible for traffic.
 
 
-## 💥 5. Failure Simulation
+## 💥 Failure Simulation
 
 ### 1️⃣ Simulate Application Failure
 
@@ -344,7 +344,7 @@ Important:
 - Load Balancer health is based on probe response, not VM power state alone.
 
 
-## 🔁 6. Service Recovery
+## 🔁 Service Recovery
 
 ### 1️⃣ Restore Application Service
 
@@ -386,7 +386,7 @@ Purpose:
 - Confirms both backends are restored to active rotation.
 
 
-## 🔧 7. Backend Operations / Migration Scenario
+## 🔧 Backend Operations / Migration Scenario
 
 ### 1️⃣ Attempt Backend Removal
 
