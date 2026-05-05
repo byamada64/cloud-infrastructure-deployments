@@ -121,9 +121,7 @@ On local machine:
 
 SSH into both VMs
 
-⚠️ Important:
-
-    Without correct permissions, SSH will fail
+⚠️ Important: Without correct permissions, SSH will fail
 
 
 ### 3️⃣ Install Web Server (NGINX)
