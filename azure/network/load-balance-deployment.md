@@ -193,7 +193,7 @@ Navigation:
 ### 7️⃣ Configure Frontend IP
 
 - Name: `web-lb-fe`
-- Create new Public IP
+- Public IP: `web-lb-pip` (existing)
 
 ⚠️ Required entry point for external traffic  
 
