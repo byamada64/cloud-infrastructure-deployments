@@ -114,10 +114,13 @@ Download `.pem` key files
 
 ### 2️⃣ Configure Access to VMs (CRITICAL STEP)
 
-On local machine:
+Run on local machine:
 
-- `chmod 400 web-vm-01_key.pem`
-- `chmod 400 web-vm-02_key.pem`
+chmod 400 web-vm-01_key.pem  
+chmod 400 web-vm-02_key.pem  
+
+ssh -i web-vm-01_key.pem azureuser@<VM01_PUBLIC_IP>  
+ssh -i web-vm-02_key.pem azureuser@<VM02_PUBLIC_IP>
 
 SSH into both VMs
 
