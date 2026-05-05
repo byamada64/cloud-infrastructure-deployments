@@ -1,3 +1,4 @@
+<img width="461" height="155" alt="image" src="https://github.com/user-attachments/assets/98823d9e-a206-4411-81a2-d58c4240efaf" />
 # ⚖️ Azure Load Balancer (VM-Based) Deployment
 
 Hands-on Azure infrastructure build focused on deploying multiple Linux web servers and distributing traffic using Azure Load Balancer with health probes, backend pool management, failure simulation, and migration-style backend removal.
@@ -55,8 +56,9 @@ This build demonstrates real-world infrastructure flow including compute provisi
 ### 1️⃣ Create Virtual Machines
 
 Create two Linux VMs:
-`web-vm-01`  
-`web-vm-02`
+
+- `web-vm-01`
+- `web-vm-02`
 
 Settings:
 
